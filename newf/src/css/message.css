@@ -1,0 +1,130 @@
+.con_message{
+    width: 74%;
+    margin-left: 10px;
+}
+
+.messageheader{
+height: 60px;
+display: flex;
+align-items: center;
+padding: 10px;
+justify-content: space-between;
+background-color: aliceblue;
+border-radius: 12px ;
+
+}
+.messageheader>div{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.messagechat{
+    margin-top: 10px;
+    padding: 20px;
+height: 515px;
+overflow-y:scroll;
+background-color: aliceblue;
+border-radius: 12px;
+z-index: 1;
+}
+.messagechat::-webkit-scrollbar{
+    width: 6px!important;
+    height: 6px!important;
+
+}
+.messagechat::-webkit-scrollbar-track{
+  background: hsla(0, 0%, 100%, .1);
+}
+.messagechat.messagechat::-webkit-scrollbar-thumb{
+  background: rgb(0,0,0,0.2)
+}
+.messagefooter{
+height: 48px;
+display: flex;
+align-items: center;
+justify-content: space-around;
+z-index: 999;
+padding: 0px 10px;
+}
+.dp{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+.user_name{
+    font-weight:600 ;
+    text-transform: capitalize;
+}
+.user_status{
+    font-size: 13px;
+    color: gray;
+}
+.emoji>img{
+height: 25px;
+width: 25px;
+margin-top: 3px;
+}
+.messagefooter>input{
+    width: 1020px;
+    border: 2px solid rgba(0, 0, 0, 0.856);
+    border-radius: 20px;
+    height: 35px;
+    padding: 0px 10px;
+}
+.messagefooter>input[type="text"] {
+    font-size:17px;
+}
+
+.sender{
+    background-color: #663dff;
+    background-image: linear-gradient(319deg, #663dff 0%, #aa00ff 37%, #cc4499 100%);
+color: white;    
+    max-width: 60%;
+    margin-left: auto;
+    padding: 5px;
+    width: fit-content;
+    border-radius: 10px 0px 10px 10px;
+    word-break: break-word;
+    display: flex;
+    margin-top: 10px;
+font-size: 20px;
+    
+}
+.receiver{
+    background-color: #ffffff;
+    max-width: 70%;
+    padding: 5px;
+    width: fit-content;
+    border-radius: 10px;
+    word-break: break-word;
+    display: flex;
+    margin-top: 10px;
+    font-size: 20px;
+}
+
+.time{
+    font-size: 10px;
+    color: white;  
+    margin-top: 6px;
+    word-break: keep-all;
+margin-top: auto;
+}
+.receiver .time{
+    color: rgb(0, 0, 0);  
+}
+.mess{
+    margin-right: 10px;
+}
+.pick{
+    position: absolute;
+    transform: translateY(-1362px);
+}
+.emoji img {
+      cursor: pointer;
+    }
+
+    .svg-rot{
+        rotate:45deg;
+        margin-right: 10px;
+    }

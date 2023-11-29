@@ -1,0 +1,5 @@
+.con_chat{
+height: 89vh;
+display: flex; 
+ justify-content: space-between;
+}

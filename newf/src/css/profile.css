@@ -1,0 +1,149 @@
+.profile_con{
+  border: 2px solid black;
+  width: 50vw;
+  display: flex;
+}
+.container{
+    user-select: none;
+    margin: 100px auto;
+    background: #231e39;
+    color: #b3b8cd;
+    border-radius: 5px;
+    width: 600px;
+    min-height: 570px;
+    text-align: center;
+    box-shadow: 0 10px 20px -10px rgba(0,0,0,.75);
+  }
+  .cover-photo{
+    background: url(https://images.unsplash.com/photo-1540228232483-1b64a7024923?ixlib=rb-1.2.1&auto=format&fit=crop&w=967&q=80);
+    height: 160px;
+    width: 100%;
+    border-radius: 5px 5px 0 0;
+  }
+  .profile{
+  height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    margin: 93px 0 0 -230px;
+    border: 1px solid #1f1a32;
+    padding: 7px;
+    background: #292343;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+  }
+  .profile-name{
+    font-size: 25px;
+    font-weight: bold;
+    margin: 27px 0 0 120px;
+  }
+  .about{
+    margin-top: 60px;
+    line-height: 21px;
+    text-align: left;
+    margin-left:20px;
+    margin-right:15px;
+  min-height: 150px;
+  padding: 15px;
+  border: 1px solid rgba(245, 245, 245, 0.289);
+border-radius: 15px;
+}
+  button{
+    margin: 10px 0 40px 0;
+  }
+  .msg-btn, .follow-btn{
+    background: #03bfbc;
+    border: 1px solid #03bfbc;
+    padding: 10px 25px;
+    color: #231e39;
+    border-radius: 3px;
+    font-family: Montserrat, sans-serif;
+    cursor: pointer;
+  }
+  .follow-btn{
+    margin-left: 10px;
+    background: transparent;
+    color: #02899c;
+  }
+  .follow-btn:hover{
+    color: #231e39;
+    background: #03bfbc;
+    transition: .5s;
+  }
+  .container i{
+    padding-left: 20px;
+    font-size: 20px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    transition: .5s;
+  }
+  .container i:hover{
+    color: #03bfbc;
+  }
+  .contact{
+    display: flex;
+    justify-content: space-around;
+  }
+  .contact div>div:nth-child(1){
+    font-weight: 800;
+  }
+.edit {
+  display: flex;
+  justify-content: space-between;
+  margin-left: auto;
+  width: 400px;
+}
+.edit button {
+  margin-right: 15px;
+}
+
+.Btn1 {
+  position: relative;
+  display: flex;
+  font-size: 12px;
+  align-items: center;
+  justify-content: flex-end;
+  width: 50px;
+  height: 20px;
+  border: none;
+  padding: 0px 20px;
+  background-color: rgb(168, 38, 255);
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 10px;
+  box-shadow: 3px 2px 0px rgb(140, 32, 212);
+  transition-duration: .3s;
+}
+
+.svg {
+  width: 11px;
+  position: absolute;
+  right: 0;
+  margin-right: 5px;
+  fill: white;
+  transition-duration: .3s;
+}
+
+.Btn1:hover {
+  color: transparent;
+  background-color: rgb(168, 38, 255);
+
+}
+
+.Btn1:hover svg {
+  right: 43%;
+  margin: 0;
+  padding: 0;
+  border: none;
+  transition-duration: .3s;
+  background-color: rgb(168, 38, 255);
+
+}
+
+.Btn1:active {
+  transform: translate(1px , 1px);
+  transition-duration: .3s;
+  box-shadow: 2px 2px 0px rgb(140, 32, 212);
+}

@@ -1,0 +1,79 @@
+.edit_con{
+    user-select: none;
+    margin: 100px auto;
+    background: #231e39;
+    color: #b3b8cd;
+    position: absolute;
+    border-radius: 5px;
+    top: 0px;
+    width: 600px;
+    min-height: 570px;
+    background-color: #fff;
+    text-align: center;
+    box-shadow: 0 10px 20px -10px rgba(0,0,0,.75);
+transition-duration: 3s;
+border: 5px solid red;
+}
+
+.button3 {
+    --main-focus: #2d8cf0;
+    --font-color: #323232;
+    --bg-color-sub: #dedede;
+    --bg-color: #eee;
+    --main-color: #323232;
+    position: relative;
+    width: 150px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border: 2px solid var(--main-color);
+    box-shadow: 4px 4px var(--main-color);
+    background-color: var(--bg-color);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .button3, .button__icon, .button__text {
+    transition: all 0.3s;
+  }
+  
+  .button3 .button__text {
+    transform: translateX(22px);
+    color: var(--font-color);
+    font-weight: 600;
+  }
+  
+  .button3 .button__icon {
+    position: absolute;
+    transform: translateX(109px);
+    height: 100%;
+    width: 39px;
+    background-color: var(--bg-color-sub);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .button3 .svg {
+    width: 20px;
+    fill: var(--main-color);
+  }
+  
+  .button3:hover {
+    background: var(--bg-color);
+  }
+  
+  .button3:hover .button__text {
+    color: transparent;
+  }
+  
+   .button3:hover .button__icon {
+    width: 148px;
+    transform: translateX(0);
+  }
+  
+  .button3:active {
+    transform: translate(3px, 3px);
+    box-shadow: 0px 0px var(--main-color);
+  }

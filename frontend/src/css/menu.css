@@ -1,0 +1,44 @@
+.con_menu{
+    width: 26%;
+
+}
+.con_menu_head{
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+        align-items: center;
+        background-color: aliceblue;
+        border-radius: 12px;
+        box-shadow:10px 10px 10px white ;
+        /* background-color: rgb(214, 234, 249); */
+        
+}
+
+.con_menu_user{
+    max-height: 91%;
+  overflow-y: scroll;/* Add vertical scrollbar */
+    padding: 5px;
+    
+}
+.con_menu_user::-webkit-scrollbar{
+    width: 0px;
+    color: red;
+}
+
+
+.search_icon{
+    height: 20px;
+    width: 20px;
+    transform: translate(-30px,5px);
+}
+.search_input{
+    border: 2px solid rgba(62, 62, 62, 0.776);
+border-radius: 20px;
+width: 270px;
+height: 30px;
+padding-left: 10px;
+}
+.search{
+    display: flex;
+}

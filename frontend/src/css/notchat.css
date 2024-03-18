@@ -1,0 +1,32 @@
+.notchat{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  width: 73%;
+  height: 87vh;
+  flex-direction: column;
+  background-color: aliceblue;
+  /* margin-top: 62px; */
+  border-radius: 12px;
+}
+.notchat h1{
+    font-size: 40px;
+    transform: translateY(-35%);
+}
+.notchat p{
+    font-size: 25px;
+    font-weight: 600;
+    transform: translateY(-35%);
+}
+.notchat img {
+transform: translate(-12%,-5%);
+    height: 30rem;
+    mix-blend-mode: multiply;
+  filter: contrast(1.08);
+  }
+  .notchat span {
+    color: #4e0eff;
+    text-transform: capitalize;
+  }
+

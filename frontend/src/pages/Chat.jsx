@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Menu from "./components/Menu.jsx";
 import Message from "./components/Message.jsx";
 import NotChat from "./components/NotChat.jsx";
-import { useAuth } from "../context/auth.js";
+import { useAuth } from "../context/auth.jsx";
 import "../css/chat.css";
 const Chat = () => {
   const {person} = useAuth();

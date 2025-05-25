@@ -3,9 +3,10 @@ import "../../css/menu.css";
 import Users from "./Users";
 import axios from "axios";
 import Search from "./Search";
+import { useAuth } from "../../context/auth";
 
 const Menu = ({setText,text}) => {
-
+const {api} = useAuth()
   let ls = localStorage.getItem("auth");
   ls = JSON.parse(ls);
   
@@ -19,12 +20,12 @@ const Menu = ({setText,text}) => {
         setUsers(fiteredData);
     }
     fetchData();
-}, [text]);
+}, [text,api]);
 
   const getUsers = async () => {
     try {
       const res = await axios.post(
-        "http://localhost:8000/api/v1/user/getallusers",{
+        `${api}/user/getallusers`,{
           _id : ls.user._id
         }
       );
@@ -40,7 +41,7 @@ const Menu = ({setText,text}) => {
   return (
     <div className="con_menu">
       <div className="con_menu_head">
-        <img src={!ls.user.photo?img:`http://localhost:8000/api/v1/user/photo/${ls.user._id}`} className="dp" alt="" />
+        <img src={!ls.user.photo?img:`${api}/user/photo/${ls.user._id}`} className="dp" alt="" />
         <div>
           <Search setText={setText}/>
         </div>

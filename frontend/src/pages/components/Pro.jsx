@@ -3,10 +3,9 @@ import "../../css/edit.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
-import { useAuth } from "../../context/auth.js";
+import { useAuth } from "../../context/auth.jsx";
 const Pro = ({setEdit}) => {
-  const { auth, setAuth } = useAuth();
-  const navigate = useNavigate();
+  const { auth,api, setAuth } = useAuth();
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
@@ -19,7 +18,7 @@ const Pro = ({setEdit}) => {
       let ls = localStorage.getItem("auth");
       ls = JSON.parse(ls);
       const res = await axios.get(
-        "http://localhost:8000/api/v1/user/myprofile",
+        `${api}/user/myprofile`,
         {
           headers: {
             Authorization: ls.token,
@@ -36,7 +35,7 @@ const Pro = ({setEdit}) => {
   };
   useEffect(() => {
     getUser();
-  }, []);
+  }, [api]);
 
   const handleUpdate = async (e) => {
     e.preventDefault();
@@ -50,7 +49,7 @@ const Pro = ({setEdit}) => {
         console.log(key[0] + ", " + key[1]);
       }
       const res = await axios.put(
-        `http://localhost:8000/api/v1/user/updateprofile/${ls.user._id}`,
+        `${api}/user/updateprofile/${ls.user._id}`,
         newForm
       );
       if (res && res.data.success) {
@@ -98,7 +97,7 @@ return (
                   src={
                     !ls.user.photo
                       ? ls.user.avatar
-                      : `http://localhost:8000/api/v1/user/photo/${ls.user._id}`
+                      : `${api}/user/photo/${ls.user._id}`
                   }
                   alt="product_photo"
                   height={"200px"}

@@ -1,18 +1,17 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import "../css/profile.css";
 import ProfileDetail from "./components/ProfileDetail";
-import Pro from "./components/Pro";
 import axios from "axios";
 import { useAuth } from "../context/auth";
 const Profile = () => {
 
   const [user, setuser] = useState([]);
-const{auth,socket,setActiveUsers}=useAuth()
+const{api}=useAuth()
   const getUser = async () => {
     try {
       let ls = localStorage.getItem("auth");
       ls = JSON.parse(ls);
-      const res = await axios.get("http://localhost:8000/api/v1/user/myprofile",{  
+      const res = await axios.get(`${api}/user/myprofile`,{  
         headers: {
         Authorization: ls.token,
       }})
@@ -23,14 +22,13 @@ const{auth,socket,setActiveUsers}=useAuth()
   };
   useEffect(() => {
     getUser();
-  }, []);
+  }, [api]);
 
  
   return (
     <>
       <ProfileDetail
           />
-          {/* <Pro/> */}
     </>
   );
 };

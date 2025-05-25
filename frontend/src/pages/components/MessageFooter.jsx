@@ -10,16 +10,18 @@ const MessageFooter = ({ SendText,setNewmessageFlag,Send, setValue, value,showEm
   const handleEmojiPickerhideShow = () => {
     setShowEmojiPicker(!showEmojiPicker);
   };
-const {auth,person,socket} = useAuth();
+const {auth,person,socket,api} = useAuth();
 
 const newMessage = async (data) => {
   try {
-    await axios.post("http://localhost:8000/api/v1/user/message/add", data);
+    await axios.post(`${api}/user/message/add`, data);
   } catch (error) {
     console.log(error.message);
   }
 };
-  
+  useEffect(()=>{
+
+  },[api])
 
   return (<>
     <div className="messagefooter">

@@ -1,9 +1,7 @@
 import React from 'react'
-import { useAuth } from '../../context/auth'
 import Robot from "../../icons/robot.gif"
 import "../../css/notchat.css"
 const NotChat = () => {
-    const {auth} = useAuth();
 const user = localStorage.getItem("auth");
 
   return (

@@ -3,10 +3,9 @@ import "../../css/edit.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
-import { useAuth } from "../../context/auth.js";
+import { useAuth } from "../../context/auth.jsx";
 const Edit = () => {
-  const { auth, setAuth } = useAuth();
-  const navigate = useNavigate();
+  const { auth, setAuth ,api} = useAuth();
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [photo, setPhoto] = useState("");
@@ -18,7 +17,7 @@ const Edit = () => {
       let ls = localStorage.getItem("auth");
       ls = JSON.parse(ls);
       const res = await axios.get(
-        "http://localhost:8000/api/v1/user/myprofile",
+        `${api}/user/myprofile`,
         {
           headers: {
             Authorization: ls.token,
@@ -31,9 +30,7 @@ const Edit = () => {
       console.log("Error while fetching all user data");
     }
   };
-  useEffect(() => {
-    getUser();
-  }, []);
+  
 
   const handleUpdate = async (e) => {
     e.preventDefault();
@@ -47,7 +44,7 @@ const Edit = () => {
         console.log(key[0] + ", " + key[1]);
       }
       const res = await axios.put(
-        `http://localhost:8000/api/v1/user/updateprofile/${ls.user._id}`,
+        `${api}/user/updateprofile/${ls.user._id}`,
         newForm
       );
       if (res && res.data.success) {
@@ -67,7 +64,9 @@ const Edit = () => {
       toast.error("something went wrong");
     }
   };
-
+  useEffect(() => {
+    getUser();
+  }, [api]);
   return (
     <>
       <div className="edit_con">
@@ -134,7 +133,7 @@ const Edit = () => {
                   src={
                     !ls.user.photo
                       ? ls.user.avatar
-                      : `http://localhost:8000/api/v1/user/photo/${ls.user._id}`
+                      : `${api}/user/photo/${ls.user._id}`
                   }
                   alt="product_photo"
                   height={"200px"}
@@ -184,7 +183,7 @@ const Edit = () => {
           </div>
         </form>
       </div>
-      <ToastContainer />
+   
     </>
   );
 };

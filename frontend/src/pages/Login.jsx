@@ -1,9 +1,9 @@
-import React, { useState} from "react";
+import React, { useEffect, useState} from "react";
 import "../css/login.css";
 import axios from "axios";
 import { NavLink, useNavigate, useLocation } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
-import { useAuth } from "../context/auth.js";
+import {  toast } from "react-toastify";
+import { useAuth } from "../context/auth.jsx";
 import img2 from "../icons/email.png";
 import img4 from "../icons/padlock.png";
 import img5 from "../icons/mes.gif";
@@ -11,7 +11,7 @@ import img5 from "../icons/mes.gif";
 const Login = () => {
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
-  const { auth, setAuth } = useAuth();
+  const { auth, setAuth,api } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -20,12 +20,11 @@ const Login = () => {
     e.preventDefault();
     try {
       const res = await axios.post(
-        "http://localhost:8000/api/v1/user/login",
+        `${api}/user/login`,
         {
           email,
           password,
         },
-        // { headers: { "Content-Type": "application/json" } }
       );
       if (res && res.data.success) {
         toast.success(res.data && res.data.message);
@@ -42,9 +41,15 @@ const Login = () => {
       }
     } catch (error) {
       console.log(error);
-      toast.error("Something went wrong");
+      toast.error(error.response.data.message);
     }
   };
+  useEffect(()=>{
+    if (auth?.token) {
+      toast.success(`you already logged in`);
+      navigate("/chat");
+    }
+  },[api,auth,api])
 
   return (
     <>
@@ -110,7 +115,6 @@ const Login = () => {
           </form>
         </div>
       </div>
-      <ToastContainer />
     </>
   );
 };

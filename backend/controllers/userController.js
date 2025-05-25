@@ -107,11 +107,7 @@ exports.getAllUserController = catchAsyncErrors(async (req, res, next) => {
 
 exports.getAllUsersPhotoController = catchAsyncErrors(async (req, res,next) => {
   const users = await User.findById(req.params.pid).select("photo");
-  // if(!users.photo.data){
-  //   return res.status(200).json({
-  //     success:false
-  //   })
-  // }
+
     if (users.photo.data) {
       res.set("Content-type", users.photo.contentType);
       return res.status(200).send(users.photo.data);
@@ -119,74 +115,6 @@ exports.getAllUsersPhotoController = catchAsyncErrors(async (req, res,next) => {
   
 })
 
-
-// exports.getSingleUser = catchAsyncErrors(async (req, res, next) => {
-//   const user = await User.findById(req.params.id);
-//   if (!user) {
-//     return next(
-//       new ErrorHandler(`User does not exist with Id: ${req.params.id}`)
-//     );
-//   }
-//   res.status(200).json({
-//     success: true,
-//     user,
-//   });
-// });
-
-// exports.logout = catchAsyncErrors(async (req, res, next) => {
-//   res.cookie("token", null, {
-//     expires: new Date(Date.now()),
-//     httpOnly: true,
-//   });
-//   res.status(200).json({
-//     success: true,
-//     message: "Logged Out",
-//   });
-// });
-
-// exports.postOTPController = catchAsyncErrors(async (req, res, next) => {
-//   const { email, otp, newPassword, conformPassword } = req.body;
-//   if (newPassword !== conformPassword) {
-//     return next(new ErrorHandler("Password Mismatch", 400));
-//   }
-//   const user = await User.findOne({ email });
-//   if (user.otp !== otp) {
-//     return next(new ErrorHandler("Invalid OTP, check your email again", 400));
-//   }
-//   user.password = newPassword;
-//   await user.save();
-//   sendToken(user, 200, res);
-// });
-
-// exports.forgotPasswordController = catchAsyncErrors(async (req, res, next) => {
-//   const user = await User.findOne({ email: req.body.email });
-//   if (!user) {
-//     return next(new ErrorHandler("User not found", 404));
-//   }
-//   function generateOTP() {
-//     var digits = "0123456789";
-//     let OTP = "";
-//     for (let i = 0; i < 6; i++) {
-//       OTP += digits[Math.floor(Math.random() * 10)];
-//     }
-//     return OTP;
-//   }
-//   const OTP = await generateOTP();
-//   user.otp = OTP;
-//   await user.save();
-//   await sendEmail(user.email, OTP, "OTP");
-//   res.status(200).json({
-//     success: true,
-//     message: "check your registered email for OTP",
-//   });
-//   const helper = async () => {
-//     user.otp = "";
-//     await user.save();
-//   };
-//   setTimeout(function () {
-//     helper();
-//   }, 300000);
-// });
 exports.newConvertionController = catchAsyncErrors(async(req,res,next)=>{
   const {senderId , receiverId} = req.body;
 const exist = await Conversation.findOne({
@@ -236,6 +164,6 @@ exports.uploadFileController = catchAsyncErrors(async(req,res,next)=>{
   if(!req.file){
     return res.status(404).json("file not found")
   }
-  const imageUrl = `http://localhost:8000/api/v1/user/file/${req.file.filename}`
+  const imageUrl = `${api}/user/file/${req.file.filename}`
   return res.status(200).json(imageUrl)
 })

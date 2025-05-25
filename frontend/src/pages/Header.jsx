@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import "../css/header.css";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import { NavLink } from "react-router-dom";
-import { useAuth } from "../context/auth.js";
+import { useAuth } from "../context/auth.jsx";
 import img1 from "../icons/ilogo.png"
 const Header = () => {
-  const {auth, setAuth,socket,setActiveUsers} = useAuth();
+  const {auth, setAuth,socket} = useAuth();
   const handleLogout = () => {
     setAuth({
       ...auth,
@@ -57,7 +57,6 @@ const Header = () => {
           )}
         </div>
       </div>
-      <ToastContainer />
     </>
   );
 };

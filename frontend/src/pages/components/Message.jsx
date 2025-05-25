@@ -1,32 +1,30 @@
-import React, { createContext, useContext, useEffect, useState ,useRef} from "react";
+import  {  useEffect, useState ,useRef} from "react";
 import "../../css/message.css";
 import MessageHeader from "./MessageHeader";
 import MessageChat from "./MessageChat";
 import MessageFooter from "./MessageFooter";
 import { useAuth } from "../../context/auth";
 import axios from "axios";
-import img1 from "../../icons/face-smile-regular.png";
 import Picker from "emoji-picker-react";
 
 
 const Message = () => {
-  const {auth, person, socket,showEmojiPicker,setShowEmojiPicker} = useAuth();
+  const {api,auth, person, socket,showEmojiPicker,setShowEmojiPicker} = useAuth();
   const [value, setValue] = useState("");
   const [messages, setMessages] = useState([]);
   const [conversation, setConversation] = useState({});
   const [newmessageFlag, setNewmessageFlag] = useState(false);
   const [incomingMessage, setIncomingMessage] = useState(false);
 
-  // const [file, setfile] = useState();
 useEffect(()=>{
-socket.current.on("getMessage",data=>{
+socket?.current?.on("getMessage",data=>{
   setIncomingMessage({...data,
 createdAt : Date.now()})
 })
-},[])
+},[api])
   const newMessage = async (data) => {
     try {
-      await axios.post("http://localhost:8000/api/v1/user/message/add", data);
+      await axios?.post(`${api}/user/message/add`, data);
     } catch (error) {
       console.log(error.message);
     }
@@ -34,21 +32,21 @@ createdAt : Date.now()})
   const handleEmojiClick = (emojiObject,event) => {
 
     let message = value;
-    message += emojiObject.emoji;
+    message += emojiObject?.emoji;
     setValue(message);
   };
   const SendText = async (e) => {
-    const code = e.keyCode || e.which;
+    const code = e?.keyCode || e?.which;
     if (code === 13 && value!=="") {
       let message = {
-        senderId: auth.user._id,
-        receiverId: person._id,
-        conversationId: conversation._id,
+        senderId: auth?.user?._id,
+        receiverId: person?._id,
+        conversationId: conversation?._id,
         type: "text",
         text: value,
       };
 
-      socket.current.emit("sendMessage", message)
+      socket?.current?.emit("sendMessage", message)
       await newMessage(message);
 
       setValue("");
@@ -59,14 +57,14 @@ createdAt : Date.now()})
   const Send = async () => {
     if(value!==""){
       let message = {
-        senderId: auth.user._id,
-        receiverId: person._id,
-        conversationId: conversation._id,
+        senderId: auth?.user?._id,
+        receiverId: person?._id,
+        conversationId: conversation?._id,
         type: "text",
         text: value,
       };
 
-      socket.current.emit("sendMessage", message)
+      socket?.current?.emit("sendMessage", message)
       await newMessage(message);
 
       setValue("");
@@ -77,10 +75,10 @@ createdAt : Date.now()})
   const getConversation = async (data) => {
     try {
       let res = await axios.post(
-        "http://localhost:8000/api/v1/user/conversation/get",
+        `${api}/user/conversation/get`,
         data
       );
-      return res.data;
+      return res?.data;
     } catch (error) {
       console.log(error.message);
     }
@@ -89,9 +87,9 @@ createdAt : Date.now()})
   const getMessages = async (id) => {
     try {
       let res = await axios.get(
-        `http://localhost:8000/api/v1/user/message/get/${id}`
+        `${api}/user/message/get/${id}`
       );
-      return res.data;
+      return res?.data;
     } catch (error) {
       console.log(error.message);
     }
@@ -102,30 +100,30 @@ createdAt : Date.now()})
   useEffect(() => {
     const getConversationDetails = async () => {
       let data = await getConversation({
-        senderId: auth.user._id,
-        receiverId: person._id,
+        senderId: auth?.user?._id,
+        receiverId: person?._id,
       });
       setConversation(data);
     };
     getConversationDetails();
     const getMessageDetails = async () => {
-      let data = await getMessages(conversation._id);
+      let data = await getMessages(conversation?._id);
       setMessages(data);
     };
     conversation._id && getMessageDetails();
-  }, [person._id, conversation._id, newmessageFlag]);
+  }, [person?._id, conversation?._id, newmessageFlag,api]);
  
   useEffect(() => {
-    scrollRef.current?.scrollIntoView({ transition: "smooth" });
-  }, [messages]);
+    scrollRef?.current?.scrollIntoView({ transition: "smooth" });
+  }, [messages,api]);
 
   useEffect(()=>{
-    incomingMessage && conversation?.members?.includes(incomingMessage.senderId)
-&&setMessages(prev => [...prev,incomingMessage])  },[incomingMessage,conversation])
+    incomingMessage && conversation?.members?.includes(incomingMessage?.senderId)
+&&setMessages(prev => [...prev,incomingMessage])  },[incomingMessage,conversation,api])
 const scrollRef = useRef();
 useEffect(() => {
-  scrollRef.current?.scrollIntoView({ transition: "smooth" });
-}, []);
+  scrollRef?.current?.scrollIntoView({ transition: "smooth" });
+}, [api]);
 const handleEmojiPickerhideShowt = () => {
   setShowEmojiPicker(true);
 };
@@ -145,7 +143,7 @@ const handleEmojiPickerhideShowt = () => {
       <div className="messagechat" onClick={handleEmojiPickerhideShow} >
     
         {messages &&
-          messages.map((message,index) => {
+          messages?.map((message,index) => {
             const isLastMessage = index === messages.length - 1;
             return <MessageChat  key={Math.floor(100000 + Math.random() * 900000)} ref={isLastMessage ? scrollRef : null} message={message} />;
           })}

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../css/register.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
@@ -9,8 +9,10 @@ import img2 from "../icons/email.png";
 import img3 from "../icons/phone-call.png";
 import img4 from "../icons/padlock.png";
 import img5 from "../icons/mes.gif";
+import { useAuth } from "../context/auth";
 
 const Register = () => {
+  const {api,auth} = useAuth();
   const navigate = useNavigate();
   const [name, setname] = useState("");
   const [email, setemail] = useState("");
@@ -21,13 +23,13 @@ const Register = () => {
     event.preventDefault();
     try {
       const res = await axios.post(
-        "http://localhost:8000/api/v1/user/register",
+        `${api}/user/register`,
         {
           name,
           email,
           phone,
           password,
-          avatar : api
+          avatar : photo_api
         }
       );
       if (res && res.data.success) {
@@ -38,12 +40,17 @@ const Register = () => {
       }
     } catch (error) {
       console.log(error);
-      toast.error("Something went wrong");
+      toast.error(error.response.data.message);
     }
   };
 
-  const api = `https://api.multiavatar.com/4645646/${Math.round(Math.random() * 1000)}.png`;
-
+  const photo_api = `https://api.multiavatar.com/4645646/${Math.round(Math.random() * 1000)}.png`;
+useEffect(()=>{
+  if (auth.token) {
+    toast.success(`you already logged in`);
+    navigate("/chat");
+  }
+},[api,auth])
   return (
     <>
       <div className="space"></div>
@@ -135,7 +142,7 @@ const Register = () => {
           </form>
         </div>
       </div>
-      <ToastContainer />
+   
     </>
   );
 };

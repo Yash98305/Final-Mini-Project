@@ -16,14 +16,14 @@ dotenv.config()
 const server = http.createServer(app); // Create HTTP Server
 const io = new Server(server, {
     cors: {
-        origin: "http://localhost:5173", // Allow all origins (update this for production)
+        origin: "https://chat-application-yashpatel.netlify.app", // Allow all origins (update this for production)
          credentials: true
     }
 });
 
 app.use(cors({
   origin: [
-    "http://localhost:5173"
+    "https://chat-application-yashpatel.netlify.app"
   ],
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],

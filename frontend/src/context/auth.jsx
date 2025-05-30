@@ -35,9 +35,10 @@ const AuthProvider = ({ children }) => {
 
   
   useEffect(() => {
-  socket.current = io("ws://final-mini-project-e6ol.onrender.com", {
-    withCredentials: true,
-  });
+  socket.current = io("https://final-mini-project-e6ol.onrender.com", {
+  transports: ["websocket", "polling"], 
+   secure: true,
+});
 
   // Optional: log or handle socket events here
   socket.current.on("connect", () => {

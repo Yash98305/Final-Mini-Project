@@ -44,7 +44,7 @@ const Register = () => {
     }
   };
 
-  const photo_api = `https://api.multiavatar.com/4645646/${Math.round(Math.random() * 1000)}.png`;
+  const photo_api = `https://avatar.iran.liara.run/username?username=${name}`;
 useEffect(()=>{
   if (auth.token) {
     toast.success(`you already logged in`);

@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext, createContext, useRef } from "react";
 import { io } from 'socket.io-client';
 import axios from "axios";
-const api = "http://localhost:8000/api/v1";
+const api = "https://final-mini-project-e6ol.onrender.com/api/v1";
 const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
   const [auth, setAuth] = useState({
@@ -35,8 +35,19 @@ const AuthProvider = ({ children }) => {
 
   
   useEffect(() => {
-    socket.current = io("ws://localhost:9000");
-  }, []);
+  socket.current = io("ws://final-mini-project-e6ol.onrender.com", {
+    withCredentials: true,
+  });
+
+  // Optional: log or handle socket events here
+  socket.current.on("connect", () => {
+    console.log("Connected to socket.io server");
+  });
+
+  return () => {
+    socket.current.disconnect(); // clean up on unmount
+  };
+}, []);
 
   return (
     <AuthContext.Provider
